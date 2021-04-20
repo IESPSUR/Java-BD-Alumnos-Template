@@ -12,8 +12,9 @@ db:
         ports:
                 - "6033:3306"
         volumes:
-                - "./docker/mysql/conf.d:/etc/mysql/conf.d"
-                - "./docker/bd:/home/bd"
+                - "./.docker/mysql/conf.d:/etc/mysql/conf.d"
+                #Directorio Scripts de inicializacion
+                #- "./.docker/initbd:/docker-entrypoint-initdb.d"
 adminer:
         image: adminer
         restart: always

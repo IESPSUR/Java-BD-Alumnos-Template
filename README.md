@@ -24,10 +24,18 @@ Bot&oacute;n derecho sobre el proyecto > Gradle > Refresh Gradle Project.
 ### Crear el contenedor
 
 Situarse en el directorio de proyecto y ejecutar el siguiente comando  
-$>`docker-compose-up`
+$>`docker-compose up -d`
 
+Comprobar contenedores levantados  
+$>`docker-compose ps`
 
-#### CREAR UNA BD BÁSICA CON UNA TABLA
+Conectar por consola  
+$>`docker-compose exec db bash`
+
+#### CREAR UNA BD BÁSICA CON UNA TABLA MANUALMENTE
+
+Conectar a la consola MySQL como Admin  
+$>`docker-compose exec db mysql -p`
 
 mysql>`CREATE DATABASE biblioteca;`
 
@@ -48,25 +56,27 @@ INSERT INTO libro VALUES ('libro3','9516234876','NOVELA','autor3',300);
 `
 
 Conectar directamenet al esquema de biblioteca  
-$>`docker exec -it mysql1 mysql -udeveloper -p biblioteca`
-$>`docker-compose exec db mysql -udeveloper -p biblioteca`
+$>`docker exec -it mysql1 mysql -udeveloper -p biblioteca`  
 
 Consultar esquema/bd actual  
 mysql>`SELECT DATABASE();`
 
 ### Comandos útiles  
 
-Ejecutar contenedor  
-$>` docker-compose up`
+Iniciar contenedores parados, creados previamente  
+$>`docker-compose start`
 
 Conectar por consola  
 $>`docker-compose exec db bash`
 
-Cargar fichero sql desde consola
-docker@container>`mysql -udeveloper -p biblioteca < /home/bd/biblioteca.sql`
+Conectar directamenet al esquema de biblioteca  
+$>`docker exec -it mysql1 mysql -udeveloper -p biblioteca`
 
-Consultar ip contenedor desde consola
-`docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' java-bd-basic-template_db_1`
+Cargar fichero sql desde consola  
+docker@container>`mysql -udeveloper -p biblioteca < [fichero]`
+
+Consultar ip contenedor desde consola  
+$>` docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [container id]`
 
 Eliminar todos los contedores  
-$>'docker-compose  rm -s'
+$>`docker-compose  rm -s`
