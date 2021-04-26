@@ -24,7 +24,7 @@ Bot&oacute;n derecho sobre el proyecto > Gradle > Refresh Gradle Project.
 ### Crear el contenedor
 
 Situarse en el directorio de proyecto y ejecutar el siguiente comando  
-$>`docker-compose up -d`
+$>`docker-compose up -d db`
 
 Comprobar contenedores levantados  
 $>`docker-compose ps`
@@ -80,3 +80,6 @@ $>` docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 
 
 Eliminar todos los contedores  
 $>`docker-compose  rm -s`
+
+Iniciar un segundo docker-compose.yml file
+$>`docker-compose -f docker-cp-postgresql.yml up -d`
